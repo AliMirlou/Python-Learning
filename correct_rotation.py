@@ -37,14 +37,13 @@ def correct_rotation(img):
     img[:, img.shape[1] - x_border_size:img.shape[1]] = 255
     h, w = img.shape[:2]
     mask = np.zeros((h + 2, w + 2), np.uint8)
-    cv2.floodFill(img, mask, (0, 0), (255,255,255))
+    cv2.floodFill(img, mask, (0, 0), (255, 255, 255))
 
     return img
 
 if __name__ == "__main__":
     for file_name in glob.glob('zahra[1-9].*'):
         img = cv2.imread(file_name)
-        img_gray = cv2.cvtColor(img , cv2.COLOR_BGR2GRAY)
+        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         corrected_rotation = correct_rotation(img_gray)
-        cv2.imwrite('final'+file_name ,  corrected_rotation)
-
+        cv2.imwrite('final' + file_name, corrected_rotation)
